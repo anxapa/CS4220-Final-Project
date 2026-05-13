@@ -1,12 +1,20 @@
+#
+# This program is used to extract unique colors from images
+# and plot them in a visual 3D graph.
+#
+
 import sys
 import io
 import matplotlib.pyplot as plt
 import numpy as np
 from PIL import Image
 
+# Converts RGB to Hex code.
 def convert_to_hex(rgb):
     return f"#{rgb[0]:02x}{rgb[1]:02x}{rgb[2]:02x}"
 
+# Extracts the colors and assigns them to a list.
+# Makes sure that all the colors are unique.
 def extract(img_np):
     x = []
     y = []
@@ -26,6 +34,8 @@ def extract(img_np):
 
 def main(argv):
     fig = plt.figure(figsize=(12, 5))
+    
+    # Creates a subplot for each image
     for i in range(len(argv)):    
         img = Image.open(argv[i]).convert("RGB")
         img_np = np.asarray(img)
